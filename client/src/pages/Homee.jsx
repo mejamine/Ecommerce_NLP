@@ -16,6 +16,7 @@ function Homee() {
   
   return (
     <div className="App">
+
       <div>
         <Card/>
         <NewProduct/>

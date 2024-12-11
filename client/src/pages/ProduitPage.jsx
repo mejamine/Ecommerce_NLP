@@ -43,7 +43,7 @@ const ProduitPage = () => {
     const { currentUser } = useSelector(state => state.user);
     const id = useParams();
     const [produit, setProduit] = useState({});
-    const { title, description, quantite, prix, offer, discountPrix, type, imgUrl = [] } = produit; // Default imgUrl as empty array
+    const { title, description, quantite, prix, offer, discountPrix,color,size,gender, type, imgUrl = [] } = produit; // Default imgUrl as empty array
 
     const [mainImage, setMainImage] = useState(""); // State to store the main image
 
@@ -123,6 +123,10 @@ const ProduitPage = () => {
                         <h1 className="text-5xl mt-10">{title}</h1>
                         <p className="text-lg font-normal my-1 mt-16">{description}</p>
                         <p className="text-lg font-bold my-1 ">Prix : {prix} DT</p>
+                        <p className="text-lg font-bold my-1 ">Type : {type} </p>
+                        <p className="text-lg font-bold my-1 ">Color : {color} </p>
+                        <p className="text-lg font-bold my-1 ">Size : {size} </p>
+                        <p className="text-lg font-bold my-1 ">Gender : {gender} </p>
                         {offer && <p className="text-lg font-bold my-1 ">Offre : {discountPrix}<br /></p>}
                     </div>
                     

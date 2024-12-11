@@ -49,6 +49,9 @@ const UpdateProduit = () => {
         setValue('quantite', data.quantite);
         setValue('prix', data.prix);
         setValue('type', data.type);
+        setValue('color', data.color);
+        setValue('size', data.size);
+        setValue('gender', data.gender);
         if (data.discountPrix) setValue('discountPrix', data.discountPrix);
         setIsoffer(data.offer);
     };
@@ -209,6 +212,33 @@ const UpdateProduit = () => {
                                             {...register('type')}
                                         />
                                         {errors.type && <p className='text-red-700 text-xs'>{errors.type.message}</p>}
+                                        <input
+                                            id='color'
+                                            type="text"
+                                            placeholder='color'
+                                            name='color'
+                                            className='form_input border-[1px] bg-customC text-black rounded-md placeholder:text-sm'
+                                            {...register('color')}
+                                        />
+                                        {errors.color && <p className='text-red-700 text-xs'>{errors.color.message}</p>}
+                                        <input
+                                            id='size'
+                                            type="text"
+                                            placeholder='size'
+                                            name='size'
+                                            className='form_input border-[1px] bg-customC text-black rounded-md placeholder:text-sm'
+                                            {...register('size')}
+                                        />
+                                        {errors.size && <p className='text-red-700 text-xs'>{errors.size.message}</p>}
+                                        <input
+                                            id='gender'
+                                            type="text"
+                                            placeholder='gender'
+                                            name='gender'
+                                            className='form_input border-[1px] bg-customC text-black rounded-md placeholder:text-sm'
+                                            {...register('gender')}
+                                        />
+                                        {errors.gender && <p className='text-red-700 text-xs'>{errors.gender.message}</p>}
                                     </div>
                                 </div>
 

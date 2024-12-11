@@ -39,11 +39,6 @@ const CreateProduit = () =>{
         mode: "onChange"
     });
 
-
-
-
-
-
     const cloud_name="dwc6xwzko";
     const preset_key="first-upload";
     const handleImageUpload = async () => {
@@ -227,6 +222,34 @@ const CreateProduit = () =>{
                                             {...register('type')}
                                         />
                                         {errors.type && <p className='text-red-700 text-xs'>{errors.type.message}</p>}
+                                        <input
+                                            id='color'
+                                            type="text"
+                                            placeholder='color'
+                                            name='color'
+                                            className='form_input border-[1px] bg-customC rounded-md placeholder:text-sm text-black'
+                                            min={10} max={50}
+                                            {...register('color')}
+                                        />
+                                        {errors.color && <p className='text-red-700 text-xs'>{errors.color.message}</p>}<input
+                                            id='size'
+                                            type="text"
+                                            placeholder='size'
+                                            name='size'
+                                            className='form_input border-[1px] bg-customC rounded-md placeholder:text-sm text-black'
+                                            min={10} max={50}
+                                            {...register('size')}
+                                        />
+                                        {errors.size && <p className='text-red-700 text-xs'>{errors.size.message}</p>}<input
+                                            id='gender'
+                                            type="text"
+                                            placeholder='gender'
+                                            name='gender'
+                                            className='form_input border-[1px] bg-customC rounded-md placeholder:text-sm text-black'
+                                            min={10} max={50}
+                                            {...register('gender')}
+                                        />
+                                        {errors.gender && <p className='text-red-700 text-xs'>{errors.gender.message}</p>}
                                     </div>
                                 </div>
 

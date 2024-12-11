@@ -33,6 +33,22 @@ const produitSchema = new mongoose.Schema(
       required:true,
       default:0
     },
+    color:{
+      type:String,
+      required:true
+    },
+    size:{
+      type:String,
+      required:true
+    },
+    color:{
+      type:String,
+      required:true
+    },
+    gender:{
+      type:String,
+      required:true
+    },
     imgUrl: {
       type: Array,
       required: true,
