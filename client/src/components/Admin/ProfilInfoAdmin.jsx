@@ -1,10 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import React,{useEffect,useState,useRef} from 'react'
-import {FaTicketAlt} from 'react-icons/fa';
 import { useDispatch, useSelector } from 'react-redux'
 import { AiFillEdit } from "react-icons/ai";
-import { getDownloadURL, getStorage, ref, uploadBytesResumable } from "firebase/storage";
-import { firebaseApp } from '../../firebase.js'
 import { loddingStart, userUpdateFailed, userUpdateSuccess } from '../../redux/admin/adminSlice.js';
 import {  toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -33,35 +30,8 @@ export default function ProfileInfoAdmin() {
   const fileRef = useRef(null);
   const { loading } = useSelector((state) => state.user);
 
-  const handleFileUpload = (file) => {
-    if (file) {
-      const fireBaseStorage = getStorage(firebaseApp);
-      const fileName = new Date().getTime() + file.name;
-      const storageRef = ref(fireBaseStorage, fileName);
-      const uploadTask = uploadBytesResumable(storageRef, file);
+  
 
-      uploadTask.on(
-        "state_changed",
-        (snapshot) => {
-          const progress =
-            (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-          setUploadingPerc(Math.round(progress));
-        },
-        (error) => {
-          setFileUploadError(true);
-        },
-        () => {
-          getDownloadURL(uploadTask.snapshot.ref).then((downloadUrl) => {
-            setFormData({ ...formData, avatar: downloadUrl });
-          });
-        }
-      );
-    }
-  };
-
-  useEffect(() => {
-    handleFileUpload(file);
-  }, [file]);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
