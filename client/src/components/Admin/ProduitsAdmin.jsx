@@ -26,6 +26,7 @@ export default function ProduitsAdmin() {
         } else {
             setProduits(json);
             setLoading(false);
+            console.log(json);
         }
     } catch (error) {
         console.error(error);

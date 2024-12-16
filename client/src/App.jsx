@@ -17,6 +17,8 @@ import ProduitsAdmin from './components/Admin/ProduitsAdmin'
 import ProfilInfoAdmin from './components/Admin/ProfilInfoAdmin'
 import TicketsAdmin from './components/Admin/TicketsAdmin'
 import StatsAdmin from './components/Admin/StatsAdmin'
+import Recommandation from './components/chat/chat'
+import Chat from './components/chat/chat2'
 function App() {
   return (
     <>
@@ -33,6 +35,8 @@ function App() {
           <Route path="/panier" element={<Panier />} />
           <Route path="/Formulaire" element={<FormulaireCommande />} />
           <Route path="/Ticket/:email" element={<Ticket />} />
+          <Route path='/chat' element={<Recommandation />} />
+          <Route path='/chat2' element={<Chat/>}/>
 
 
 

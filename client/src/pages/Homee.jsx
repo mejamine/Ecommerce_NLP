@@ -16,7 +16,7 @@ function Homee() {
   
   return (
     <div className="App">
-
+      <a href="/chat" className="fixed z-50 bottom-2 right-2 p-5 rounded-xl bg-black text-white">Chat</a>
       <div>
         <Card/>
         <NewProduct/>
