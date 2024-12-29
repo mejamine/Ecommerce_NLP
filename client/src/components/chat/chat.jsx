@@ -1,6 +1,4 @@
 import React, { useEffect ,useState} from "react";
-import ProduitCard from "../ProduitCard";
-
 const Recommandation = () => {
     const [recommendedProducts, setRecommendedProducts] = useState([]);
     const [loading, setLoading] = useState(false);

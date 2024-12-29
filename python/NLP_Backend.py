@@ -1,12 +1,3 @@
-from flask import Flask, request, jsonify
-import spacy
-from flask_cors import CORS
-app = Flask(__name__)
-nlp = spacy.load("en_core_web_sm")
-CORS(app, resources={r"/*": {"origins": "*"}})
-
-
-
 product_data = [
     {"id": 1, "name": "Smartphone", "description": "A high-tech smartphone with a great camera and performance."},
     {"id": 2, "name": "Laptop", "description": "A powerful laptop with a fast processor and large storage."},
@@ -309,8 +300,12 @@ site_products = [
         "__v": 0
     }
 ]
-
-
+from flask import Flask, request, jsonify
+import spacy
+from flask_cors import CORS
+app = Flask(__name__)
+CORS(app, resources={r"/*": {"origins": "*"}})
+nlp = spacy.load("en_core_web_sm")
 def extract_keywords(text):
     doc = nlp(text)
     keywords = [token.lemma_ for token in doc if not token.is_stop and (token.pos_ == 'NOUN' )]
