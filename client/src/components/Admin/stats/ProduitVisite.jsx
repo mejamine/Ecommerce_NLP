@@ -11,7 +11,7 @@ const ProduitVisite = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('http://localhost:4000/ecommerce/produits/');
+        const response = await fetch(`${import.meta.env.VITE_REACT_APP_API_URL}/ecommerce/produits/`);
         const produits = await response.json();
 
         const transformedData = produits.map(produit => ({

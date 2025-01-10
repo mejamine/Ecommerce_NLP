@@ -25,7 +25,7 @@ const SingIn = () => {
     const onSubmit = async (formData) => {
         dispatch(loddingStart())
         try {
-            const res = await fetch('http://localhost:4000/ecommerce/auth/signin', {
+            const res = await fetch(`${import.meta.env.VITE_REACT_APP_API_URL}/ecommerce/auth/signin`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

@@ -14,11 +14,11 @@ const Chat = () => {
     const send = async () => {
         setSending(true);
         try {
-          const response = await axios.post(`http://127.0.0.1:5000/text`, { text });
+          const response = await axios.post(`${import.meta.env.VITE_FLASK_APP_API_URL}/text`, { text });
           setNewRecom(response.data.res);
           console.log(response.data.res);
           try {
-            const res = await fetch(`http://localhost:4000/ecommerce/produits/${response.data.res[1].id}`);
+            const res = await fetch(`${import.meta.env.VITE_REACT_APP_API_URL}/ecommerce/produits/${response.data.res[1].id}`);
             const json = await res.json();
             if (json.success === false) {
                 toast.error(json.message, {
@@ -33,7 +33,7 @@ const Chat = () => {
             console.log(error);
         }
         try {
-            const res = await fetch(`http://localhost:4000/ecommerce/produits/${response.data.res[0].id}`);
+            const res = await fetch(`${import.meta.env.VITE_REACT_APP_API_URL}/ecommerce/produits/${response.data.res[0].id}`);
             const json = await res.json();
             if (json.success === false) {
                 toast.error(json.message, {

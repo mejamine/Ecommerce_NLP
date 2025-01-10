@@ -17,7 +17,7 @@ export default function Admin() {
 
     const handleLogOut = async () => {
         try {
-            const res = await fetch('http://localhost:4000/ecommerce/auth/signout');
+            const res = await fetch(`${import.meta.env.VITE_REACT_APP_API_URL}/ecommerce/auth/signout`);
             const data = await res.json();
             if (data.success === false) {
                 useDispatch(signoutFailed(data.message))

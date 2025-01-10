@@ -55,7 +55,7 @@ function Ticket() {
   useEffect(() => {
     const fetchCommandes = async () => {
       try {
-        const response = await fetch(`http://localhost:4000/ecommerce/commandes/user/${email}`);
+        const response = await fetch(`${import.meta.env.VITE_REACT_APP_API_URL}/ecommerce/commandes/user/${email}`);
         if (response.ok) {
           const data = await response.json();
           const sortedCommandes = data.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));

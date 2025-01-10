@@ -85,7 +85,7 @@ const CreateProduit = () =>{
         console.log(formData.imgUrl);
         try {
             setFormSubmitLoading(true)
-            const res = await fetch('http://localhost:4000/ecommerce/produits/', {
+            const res = await fetch(`${import.meta.env.VITE_REACT_APP_API_URL}/ecommerce/produits/`, {
                 method: 'POST',
                 headers: {
                     "Content-Type": 'application/json'

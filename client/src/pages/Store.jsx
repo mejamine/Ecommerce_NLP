@@ -45,7 +45,7 @@ const Store = () =>{
     const fetchProduits = async () => {
         try {
             setLoading(true);
-            const res = await fetch(`http://localhost:4000/ecommerce/produits/`);
+            const res = await fetch(`${import.meta.env.VITE_REACT_APP_API_URL}/ecommerce/produits/`);
             const json = await res.json();
             if (json.success === false) {
                 setLoading(false);

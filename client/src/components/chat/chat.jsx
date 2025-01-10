@@ -9,7 +9,7 @@ const Recommandation = () => {
 
     const getProductRecommendations = async () => {
         try {
-            const res = await fetch('http://127.0.0.1:5000/recommend', {
+            const res = await fetch(`${import.meta.env.VITE_FLASK_APP_API_URL}/recommend`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -18,7 +18,7 @@ const Recommandation = () => {
             const data = await res.json();
             console.log(data)
             try {
-                const res = await fetch(`http://localhost:4000/ecommerce/produits/${data[1].id}`);
+                const res = await fetch(`${import.meta.env.VITE_REACT_APP_API_URL}/ecommerce/produits/${data[1].id}`);
                 const json = await res.json();
                 if (json.success === false) {
                     toast.error(json.message, {
@@ -32,7 +32,7 @@ const Recommandation = () => {
                 console.log(error);
             }
             try {
-                const res = await fetch(`http://localhost:4000/ecommerce/produits/${data[0].id}`);
+                const res = await fetch(`${import.meta.env.VITE_REACT_APP_API_URL}/ecommerce/produits/${data[0].id}`);
                 const json = await res.json();
                 if (json.success === false) {
                     toast.error(json.message, {

@@ -42,7 +42,7 @@ export default function ProfileInfoAdmin() {
     // setLoading(true)
     try {
       dispatch(loddingStart());
-      const res = await fetch(`http://localhost:4000/ecommerce/users/update/${currentAdmin._id}`, {
+      const res = await fetch(`${process.env.REACT_APP_API_URL}/ecommerce/users/update/${currentAdmin._id}`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
@@ -85,7 +85,7 @@ export default function ProfileInfoAdmin() {
     useEffect(() => {
       const loadCommandeGP=async()=>{
           try {
-              const response = await fetch(`http://localhost:4000/ecommerce/commandes`);
+              const response = await fetch(`${import.meta.env.VITE_REACT_APP_API_URL}/ecommerce/commandes`);
               if (response.ok) {
                 const data = await response.json();
                 // Trier les commandes par date de création (du plus récent au plus ancien)

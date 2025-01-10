@@ -44,7 +44,7 @@ function FormulaireCommande() {
     };
 
     try {
-      const response = await fetch('http://localhost:4000/ecommerce/commandes/', {
+      const response = await fetch(`${import.meta.env.VITE_REACT_APP_API_URL}/ecommerce/commandes/`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

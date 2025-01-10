@@ -19,7 +19,7 @@ export const NewProduct = () => {
         });
 
         const fetchLastProduct = async () => {
-            const response = await axios.get('http://localhost:4000/ecommerce/produits/last'); 
+            const response = await axios.get(`${import.meta.env.VITE_REACT_APP_API_URL}/ecommerce/produits/last`); 
             setProduit(response.data); 
             setLoading(false); 
         };

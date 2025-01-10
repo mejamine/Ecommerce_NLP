@@ -13,7 +13,7 @@ export default function ProfileView() {
     useEffect(() => {
         const loadCommandeP=async()=>{
             try {
-                const response = await fetch(`http://localhost:4000/ecommerce/commandes/user/${userId}`);
+                const response = await fetch(`${import.meta.env.VITE_REACT_APP_API_URL}/ecommerce/commandes/user/${userId}`);
                 if (response.ok) {
                   const data = await response.json();
                   // Trier les commandes par date de création (du plus récent au plus ancien)
@@ -28,7 +28,7 @@ export default function ProfileView() {
         }
         const loadCommandeM = async()=>{
             try {
-                const response = await fetch(`http://localhost:4000/ecommerce/commandesm/user/${userId}`);
+                const response = await fetch(`${import.meta.env.VITE_REACT_APP_API_URL}/ecommerce/commandesm/user/${userId}`);
                 if (response.ok) {
                   const data = await response.json();
                   setCommandesM(data);

@@ -29,7 +29,7 @@ const UpdateProduit = () => {
 
     useEffect(() => {
         const getProduitInfo = async () => {
-            const res = await fetch(`http://localhost:4000/ecommerce/produits/${params.id}`);
+            const res = await fetch(`${import.meta.env.VITE_REACT_APP_API_URL}/ecommerce/produits/${params.id}`);
             const data = await res.json();
 
             if (data.success === false) {
@@ -96,7 +96,7 @@ const UpdateProduit = () => {
     const handleFormSubmit = async (data) => {
         try {
             setFormSubmitLoading(true);
-            const res = await fetch(`http://localhost:4000/ecommerce/produits/${params.id}`, {
+            const res = await fetch(`${import.meta.env.VITE_REACT_APP_API_URL}/ecommerce/produits/${params.id}`, {
                 method: 'PUT',
                 headers: {
                     "Content-Type": 'application/json'

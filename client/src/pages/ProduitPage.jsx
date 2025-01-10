@@ -51,7 +51,7 @@ const ProduitPage = () => {
     useEffect(() => {
         const loadProduit = async () => {
             try {
-                const res = await fetch(`http://localhost:4000/ecommerce/produits/${id.id}`);
+                const res = await fetch(`${import.meta.env.VITE_REACT_APP_API_URL}/ecommerce/produits/${id.id}`);
                 const json = await res.json();
                 if (json.success === false) {
                     toast.error(json.message, {
@@ -67,7 +67,7 @@ const ProduitPage = () => {
                      // Set the main image to the first image
                      if (currentAdmin === null) { 
                         try {
-                            const res = await fetch(`http://localhost:4000/ecommerce/produits/${id.id}`, {
+                            const res = await fetch(`${import.meta.env.VITE_REACT_APP_API_URL}/ecommerce/produits/${id.id}`, {
                                 method: 'PUT',
                                 headers: {
                                     "Content-Type": 'application/json'
