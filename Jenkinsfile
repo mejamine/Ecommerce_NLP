@@ -21,18 +21,18 @@ pipeline {
                 if ! command -v trivy &> /dev/null; then
                     echo "Trivy not found. Installing..."
                     wget -qO- https://github.com/aquasecurity/trivy/releases/latest/download/trivy_$(uname -s)_$(uname -m).tar.gz | tar zxv
-                    sudo mv trivy /usr/local/bin/
+                    echo $LAPTO_CREDENTIALS_PSW | sudo -S mv trivy /usr/local/bin/
                 fi
                 
                 # Scan each image
                 echo "Scanning API image for vulnerabilities..."
-                sudo trivy image mejbria9/api:latest || true
+                echo $LAPTO_CREDENTIALS_PSW | sudo -S trivy image mejbria9/api:latest || true
                 
                 echo "Scanning Client image for vulnerabilities..."
-                sudo trivy image mejbria9/client:latest || true
+                echo $LAPTO_CREDENTIALS_PSW | sudo -S trivy image mejbria9/client:latest || true
                 
                 echo "Scanning Python NLP image for vulnerabilities..."
-                sudo trivy image mejbria9/pythonnlp:latest || true
+                echo $LAPTO_CREDENTIALS_PSW | sudo -S trivy image mejbria9/pythonnlp:latest || true
                 '''
             }
         }
