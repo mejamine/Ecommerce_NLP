@@ -11,7 +11,7 @@ pipeline {
         }
         stage('Build Docker Images') {
             steps {
-                    sh 'echo $LAPTOP_CREDENTIALS_PSW | sudo -S docker compose -f compose.yml build'
+                    sh 'echo ${LAPTOP_CREDENTIALS_PSW} | sudo -S docker compose -f compose.yml build'
                 }
         }
         stage('Scan Vulnerabilities with trivy') {
@@ -21,50 +21,50 @@ pipeline {
                 if ! command -v trivy &> /dev/null; then
                     echo "Trivy not found. Installing..."
                     wget -qO- https://github.com/aquasecurity/trivy/releases/latest/download/trivy_$(uname -s)_$(uname -m).tar.gz | tar zxv
-                    echo $LAPTO_CREDENTIALS_PSW | sudo -S mv trivy /usr/local/bin/
+                    echo ${LAPTO_CREDENTIALS_PSW} | sudo -S mv trivy /usr/local/bin/
                 fi
                 
                 # Scan each image
                 echo "Scanning API image for vulnerabilities..."
-                echo $LAPTO_CREDENTIALS_PSW | sudo -S trivy image mejbria9/api:latest || true
+                echo ${LAPTO_CREDENTIALS_PSW} | sudo -S trivy image mejbria9/api:latest || true
                 
                 echo "Scanning Client image for vulnerabilities..."
-                echo $LAPTO_CREDENTIALS_PSW | sudo -S trivy image mejbria9/client:latest || true
+                echo ${LAPTO_CREDENTIALS_PSW} | sudo -S trivy image mejbria9/client:latest || true
                 
                 echo "Scanning Python NLP image for vulnerabilities..."
-                echo $LAPTO_CREDENTIALS_PSW | sudo -S trivy image mejbria9/pythonnlp:latest || true
+                echo ${LAPTO_CREDENTIALS_PSW} | sudo -S trivy image mejbria9/pythonnlp:latest || true
                 '''
             }
         }
         stage('Run Containers') {
             steps {
-                    sh 'echo $LAPTOP_CREDENTIALS_PSW | sudo -S docker compose -f compose.yml up -d'
+                    sh 'echo ${LAPTOP_CREDENTIALS_PSW} | sudo -S docker compose -f compose.yml up -d'
                 }  
         }
         stage('Stop Containers') {
             steps {
-                    sh 'echo $LAPTOP_CREDENTIALS_PSW | sudo -S docker compose -f compose.yml down'
+                    sh 'echo ${LAPTOP_CREDENTIALS_PSW} | sudo -S docker compose -f compose.yml down'
                 }
         }
         stage('Tag  Images to Docker Hub') {
             steps {
-                    sh 'echo $LAPTOP_CREDENTIALS_PSW | sudo -S docker tag mejbria9/api:latest mejbria9/api:latest'
-                    sh 'echo $LAPTOP_CREDENTIALS_PSW | sudo -S docker tag mejbria9/client:latest mejbria9/client:latest'
-                    sh 'echo $LAPTOP_CREDENTIALS_PSW | sudo -S docker tag mejbria9/pythonnlp:latest mejbria9/pythonnlp:latest'
+                    sh 'echo ${LAPTOP_CREDENTIALS_PSW} | sudo -S docker tag mejbria9/api:latest mejbria9/api:latest'
+                    sh 'echo ${LAPTOP_CREDENTIALS_PSW} | sudo -S docker tag mejbria9/client:latest mejbria9/client:latest'
+                    sh 'echo ${LAPTOP_CREDENTIALS_PSW} | sudo -S docker tag mejbria9/pythonnlp:latest mejbria9/pythonnlp:latest'
                 }
         }
         stage('push  Images to Docker Hub') {
             steps {
-                    sh 'echo $LAPTOP_CREDENTIALS_PSW | sudo -S docker push mejbri1998/api:latest'
-                    sh 'echo $LAPTOP_CREDENTIALS_PSW | sudo -S docker push mejbri1998/client:latest'
-                    sh 'echo $LAPTOP_CREDENTIALS_PSW | sudo -S docker push mejbri1998/pythonnlp:latest'
+                    sh 'echo ${LAPTOP_CREDENTIALS_PSW} | sudo -S docker push mejbri1998/api:latest'
+                    sh 'echo ${LAPTOP_CREDENTIALS_PSW} | sudo -S docker push mejbri1998/client:latest'
+                    sh 'echo ${LAPTOP_CREDENTIALS_PSW} | sudo -S docker push mejbri1998/pythonnlp:latest'
                 }
             
         }
     }
     post {
         always {
-            sh 'echo $LAPTOP_CREDENTIALS_PSW | sudo -S docker system prune -af'
+            sh 'echo ${LAPTOP_CREDENTIALS_PSW} | sudo -S docker system prune -af'
         }
     }
 }
