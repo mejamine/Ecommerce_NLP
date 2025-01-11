@@ -1,49 +1,61 @@
 pipeline {
-    agent any
-    stages {
-        stage('Checkout') {
-            steps {
-                checkout scm
-            }
-        }
-
-        stage('Build Docker Images') {
-            steps {
-                    sh 'echo root | sudo -S docker compose -f compose.yml build'
-                }
-        }
-
-        stage('Run Containers') {
-            steps {
-                
-                    sh 'echo root | sudo -S docker compose -f compose.yml up -d'
-                }
-            
-        }
-
-        stage('Stop Containers') {
-            steps {
-                
-                    sh 'echo root | sudo -S docker compose -f compose.yml down'
-                }
-            
-        }
-
-        stage('Tag and Push Images to Docker Hub') {
-            steps {
-                
-                    sh "echo root | sudo -S docker tag mejbri1998/api:latest mejbri1998/api:latest"
-                    sh "echo root | sudo -S docker tag mejbri1998/client:latest mejbri1998/client:latest"
-                    
-                    sh "echo root | sudo -S docker push mejbri1998/api:latest"
-                    sh "echo root | sudo -S docker push mejbri1998/client:latest"
-                }
-            
-        }
+  agent any
+  
+  environment {
+    DOCKERHUB_CREDENTIALS = credentials('mejbria9-dockerhub')
+  }
+  stages {
+    stage('Build api') {
+      steps {
+        sh 'docker build -t mejbria9/api:latest ./api/'
+      }
     }
-    post {
-        always {
-            sh 'echo root | sudo -S docker system prune -af'
-        }
+    stage('Build client') {
+      steps {
+        sh 'docker build -t mejbria9/client:latest ./client/' 
+      }
     }
+    stage('Build pythonnlp') {
+      steps {
+        sh 'docker build -t mejbria9/pythonnlp:latest ./python/' 
+      }
+    }
+    stage('Scan Vulnerabilities') {
+      steps {
+        sh '''
+          # Install Trivy if not already installed
+          if ! command -v trivy &> /dev/null; then
+            echo "Installing Trivy..."
+            wget -qO- https://github.com/aquasecurity/trivy/releases/latest/download/trivy_$(uname -s)_$(uname -m).tar.gz | tar zxv
+            sudo mv trivy /usr/local/bin/
+          fi
+
+          # Scan images for vulnerabilities
+          echo "Scanning API image..."
+          trivy image mejbria9/api:latest || true
+          echo "Scanning Client image..."
+          trivy image mejbria9/client:latest || true
+          echo "Scanning Python NLP image..."
+          trivy image mejbria9/pythonnlp:latest || true
+        '''
+      }
+    }
+    stage('Login') {
+      steps {
+        sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
+      }
+    }
+    stage('Push') {
+      steps {
+        sh 'docker push mejbria9/api:latest'
+        sh 'docker push mejbria9/client:latest'
+        sh 'docker push mejbria9/pythonnlp:latest'
+      }
+    }
+  }
+  post {
+    always {
+      sh 'docker logout'
+    }
+  }
 }
