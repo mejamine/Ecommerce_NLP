@@ -16,5 +16,5 @@ spec:
       - name: pythonnlp
         image: mejbri1998/pythonnlp:latest
         ports:
-        - conatinerPort : 5000
+        - containerPort : 5000
         

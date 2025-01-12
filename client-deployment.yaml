@@ -16,7 +16,7 @@ spec:
       - name: client
         image: mejbri1998/client:latest
         ports:
-        - conatinerPort : 5173
-        envForm:
+        - containerPort : 5173
+        envFrom:
         - configMapRef:
             name: app-configmap

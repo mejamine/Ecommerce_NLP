@@ -16,7 +16,7 @@ spec:
       - name: api
         image: mejbri1998/api:latest
         ports:
-        - conatinerPort : 4000
-        envForm:
+        - containerPort : 4000
+        envFrom:
         - configMapRef:
             name: app-configmap
