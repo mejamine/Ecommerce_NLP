@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: api-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: api
+  template:
+    metadata:
+      labels:
+        app: api
+    spec:
+      containers:
+      - name: api
+        image: mejbri1998/api:latest
+        ports:
+        - conatinerPort : 4000
+        envForm:
+        - configMapRef:
+            name: app-configmap

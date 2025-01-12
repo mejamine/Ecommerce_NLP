@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pythonnlp-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: pythonnlp
+  template:
+    metadata:
+      labels:
+        app: pythonnlp
+    spec:
+      containers:
+      - name: pythonnlp
+        image: mejbri1998/pythonnlp:latest
+        ports:
+        - conatinerPort : 5000
+        
