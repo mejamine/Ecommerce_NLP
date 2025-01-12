@@ -1,0 +1,9 @@
+apiVersion : v1
+kind: ConfigMap
+metadata: 
+  name: app-configmap
+data:
+  MONGO_URI: mongodb+srv://mejbrimed10:nnsTUg3qOKIoFehz@databaseecommerce.nlwhi.mongodb.net/?retryWrites=true&w=majority&appName=databaseecommerce
+  JWT_SECRET: ecommerce
+  VITE_REACT_APP_API_URL: http://api-service:4000
+  VITE_FLASK_APP_API_URL: http://pythonnlp-service:5000

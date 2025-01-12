@@ -23,9 +23,9 @@ pipeline {
         }
         stage('Tag  Images to Docker Hub') {
             steps {
-                    sh 'echo root | sudo -S docker tag mejbria9/api:latest mejbria9/api:latest'
-                    sh 'echo root | sudo -S docker tag mejbria9/client:latest mejbria9/client:latest'
-                    sh 'echo root | sudo -S docker tag mejbria9/pythonnlp:latest mejbria9/pythonnlp:latest'
+                    sh 'echo root | sudo -S docker tag mejbri1998/api:latest mejbri1998/api:latest'
+                    sh 'echo root | sudo -S docker tag mejbri1998/client:latest mejbri1998/client:latest'
+                    sh 'echo root | sudo -S docker tag mejbri1998/pythonnlp:latest mejbri1998/pythonnlp:latest'
                 }
         }
         stage('push  Images to Docker Hub') {
