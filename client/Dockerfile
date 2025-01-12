@@ -5,3 +5,4 @@ RUN npm install
 COPY . ./
 ENV PORT 5173
 EXPOSE ${PORT}
+CMD ["npm","run","dev"]
