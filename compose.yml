@@ -12,7 +12,7 @@ services:
     volumes:
       - "./api/:/app"
       - "/app/node_modules"
-    #image: mejbria9/api:latest  
+    image: mejbri1998/api:latest  
 
   client:
     build: ./client/
@@ -26,7 +26,7 @@ services:
     volumes:
       - "./client/:/app"
       - "/app/node_modules"
-    #image: mejbria9/client:latest  
+    image: mejbri1998/client:latest  
   
   pythonnlp:
     build: ./python/
@@ -36,4 +36,4 @@ services:
     command: python NLP_Backend.py
     volumes:
       - "./python/:/app"
-    #image: mejbria9/pythonnlp:latest
+    image: mejbri1998/pythonnlp:latest
