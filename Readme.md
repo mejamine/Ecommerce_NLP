@@ -289,11 +289,25 @@ the next step is CD part :
 
 ![argo8](./images/argo8.png)          
 
-            and then create an app where we define the git repo url and the path for helm charts ect 
+            and then create an app for every service where we define the git repo url and the path for helm charts ect 
 
             here's the result that need to be shown : 
 
-![argo9](./images/argo9.png)     
+            global : 
+
+![argo9](./images/argo9.png)   
+
+            example api : 
+
+![argo10](./images/argo10.png)  
+
+            so to access the application we need to modify the /etc/hosts and ad the following line :
+
+                127.0.0.1 ecommerce-nlp-api.local
+
+
+
+
 
             
 
