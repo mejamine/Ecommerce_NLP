@@ -297,9 +297,18 @@ the next step is CD part :
 
 ![argo9](./images/argo9.png)   
 
-            example api : 
+            example 
+                api : 
 
 ![argo10](./images/argo10.png)  
+
+                pythonnlp :
+
+![argo11](./images/argo11.png)  
+
+                client :
+
+![argo12](./images/argo12.png)  
 
             so to access the application we need to modify the /etc/hosts and ad the following line :
 
