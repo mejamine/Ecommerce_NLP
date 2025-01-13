@@ -19,7 +19,7 @@ ingress:
   enabled: true
   annotations: {}
   hosts:
-    - host: mern-app.local
+    - host: ecommerce-nlp-client.local
       paths:
         - path: /
   tls: []
