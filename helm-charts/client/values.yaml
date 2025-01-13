@@ -1,25 +1,29 @@
 replicaCount: 3
 
-image :
-  repository : mejbri1998/client
-  tag : latest
-  pullPolicy : IfNotPresent
+image:
+  repository: mejbri1998/client
+  tag: latest
+  pullPolicy: IfNotPresent
 
-service :
-  type : ClusterIP
-  port : 5173
+service:
+  type: ClusterIP
+  port: 5173
 
-env :
-  - name : VITE_REACT_APP_API_URL
-    value : http://api:4000
-  - name : VITE_FLASK_APP_API_URL
-    value : http://pythonnlp:5000
+env:
+  - name: VITE_REACT_APP_API_URL
+    value: http://api:4000
+  - name: VITE_FLASK_APP_API_URL
+    value: http://pythonnlp:5000
 
-ingress :
-  enabled : true
-  annotations : {}
-  hosts :
-    - host : mern - app . local
-      paths :
-        - path : /
-  tls : []
+ingress:
+  enabled: true
+  annotations: {}
+  hosts:
+    - host: mern-app.local
+      paths:
+        - path: /
+  tls: []
+
+serviceAccount:
+  create: true
+  name: ecommerce-client

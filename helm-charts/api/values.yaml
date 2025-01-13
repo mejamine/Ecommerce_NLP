@@ -1,19 +1,23 @@
 replicaCount: 3
 
-image :
-  repository : mejbri1998/api
-  tag : latest
-  pullPolicy : IfNotPresent
+image:
+  repository: mejbri1998/api
+  tag: latest
+  pullPolicy: IfNotPresent
 
-service :
-  type : ClusterIP
-  port : 4000
+service:
+  type: ClusterIP
+  port: 4000
 
-env :
-  - name : MONGO_URI
-    value : mongodb+srv://mejbrimed10:nnsTUg3qOKIoFehz@databaseecommerce.nlwhi.mongodb.net/?retryWrites=true&w=majority&appName=databaseecommerce
-  - name : JWT_SECRET
-    value : ecommerce
+env:
+  - name: MONGO_URI
+    value: mongodb+srv://mejbrimed10:nnsTUg3qOKIoFehz@databaseecommerce.nlwhi.mongodb.net/?retryWrites=true&w=majority&appName=databaseecommerce
+  - name: JWT_SECRET
+    value: ecommerce
 
-ingress :
-  enabled : false
+ingress:
+  enabled: false
+
+serviceAccount:
+  create: true
+  name: ecommerce-api

@@ -1,13 +1,17 @@
 replicaCount: 3
 
-image :
-  repository : mejbri1998/pythonnlp
-  tag : latest
-  pullPolicy : IfNotPresent
+image:
+  repository: mejbri1998/pythonnlp
+  tag: latest
+  pullPolicy: IfNotPresent
 
-service :
-  type : ClusterIP
-  port : 5000
+service:
+  type: ClusterIP
+  port: 5000
 
-ingress :
-  enabled : false
+ingress:
+  enabled: false
+
+serviceAccount:
+  create: true
+  name: ecommerce-pythonnlp
