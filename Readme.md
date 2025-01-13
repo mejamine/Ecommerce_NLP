@@ -215,11 +215,13 @@ the next step is CD part :
 
 ![k8s_4](./images/k8s_4.png)
 
-        4. to access the app all we need to do is run the following command line to get the url of the frontend app (client) wich is related to the other containers : 
+        4. to access the app all we need to do is run the following command line to get the url of the frontend app (client) wich is related to the other containers then open it in the navigator : 
 
             minikube service client-service --url 
 
 ![k8s_5](./images/k8s_5.png)
+
+![deployment](./images/deployment.png)
 
     + helm + ArgoCD :
 
