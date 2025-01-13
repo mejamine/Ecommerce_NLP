@@ -15,7 +15,7 @@ env:
   - name: VITE_FLASK_APP_API_URL
     value: http://pythonnlp:5000
 
-iingress:
+ingress:
   enabled: true
   annotations: {}
   hosts:
