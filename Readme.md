@@ -249,7 +249,53 @@ the next step is CD part :
 
 ![deleteDep](./images/deleteDep.png)
 
+            we start with creating a namespace and install argocd from official manifests :
 
+                kubectl create namespace argocd
+
+![argo1](./images/argo1.png)
+
+                kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
+
+![argo2](./images/argo2.png)
+
+            and here are the pods that we got
+
+![argo3](./images/argo3.png)
+
+            we need to wait till all pods are ready so we can configure and access argoCD interface
+
+![argo4](./images/argo4.png)
+
+            as long as they ready we need to use a port forwarding (this command line must be ran in a seperate terminale and not be interrupted as long as we want to access argoCD interface) :
+
+                kubectl port-forward svc/argocd-server -n argocd 8081:443
+
+![argo5](./images/argo5.png)
+
+            now we open localhost:8081 and this what we get :
+
+![argo6](./images/argo6.png)     
+
+            the user name is usually "admin" and you can get the password by running the following command linne : 
+
+                kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d; echo
+
+            then you'll find yourself in this interface :
+
+![argo7](./images/argo7.png) 
+
+            we got to create a repo connection like the following by going Settings -> repositories -> connect :
+
+![argo8](./images/argo8.png)          
+
+            and then create an app where we define the git repo url and the path for helm charts ect 
+
+            here's the result that need to be shown : 
+
+![argo9](./images/argo9.png)     
+
+            
 
 
 
