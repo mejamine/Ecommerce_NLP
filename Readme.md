@@ -247,6 +247,9 @@ the next step is CD part :
 
         3. as long we got to this stage now let's move to installing argoCD into our cluster (of course after deleting the previous deployment [kubernetes simple])
 
+![deleteDep](./images/deleteDep.png)
+
+
 
 
 
