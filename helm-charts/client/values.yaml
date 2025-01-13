@@ -26,4 +26,10 @@ ingress:
 
 serviceAccount:
   create: true
-  name: ecommerce-client
+  name: ecommerce-nlp-client
+
+autoscaling:
+  enabled: true
+  minReplicas: 1
+  maxReplicas: 10
+  targetCPUUtilizationPercentage: 80

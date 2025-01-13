@@ -20,7 +20,7 @@ ingress:
 
 serviceAccount:
   create: true
-  name: ecommerce-api
+  name: ecommerce-nlp-api
 
 autoscaling:
   enabled: true
