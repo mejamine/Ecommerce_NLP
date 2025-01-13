@@ -312,7 +312,25 @@ the next step is CD part :
 
             so to access the application we need to modify the /etc/hosts and ad the following line :
 
-                127.0.0.1 ecommerce-nlp-api.local
+                192.168.49.2 ecommerce-nlp-api.local
+
+                we can access the file with :
+
+                    sudo nano /etc/hosts
+
+                then we do a port forwarding with : 
+
+                    kubectl port-forward svc/ecommerce-nlp-client  8082:5173
+
+![argo13](./images/argo13.png)  
+
+                all we need to do now is to access 
+
+                    http://localhost:8082
+
+![argo14](./images/argo14.png)  
+
+                
 
 
 
