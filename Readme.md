@@ -94,7 +94,8 @@ So the goal from the next step is to build a CI/CD pipline for the previous proj
 
                 localhost:8080 and follow the constructions to continue the installation of jenkins till you find your self in this interface : 
             
-<image><image><image><image><image><image><image><image><image><image><image>
+![jenkins](./images/jenkins.png)
+
 
         2. a trick you need to do so you can give access jenkins to docker on your local terminal is to modify the sudoers with the following command line : 
 
@@ -179,14 +180,15 @@ the next step is CD part :
 
         1. so i created a k8s folder where i'm gonna put the kubernetes manifests : 
 
-            k8s
-            |__app-configmap.yaml
-            |__api-deployment.yaml
-            |__api-service.yaml
-            |__client-deployment.yaml
-            |__client-service.yaml
-            |__pythonnlp-deployment.yaml
-            |__pythonnlp-service.yaml
+            app
+            |__k8s
+                |__app-configmap.yaml
+                |__api-deployment.yaml
+                |__api-service.yaml
+                |__client-deployment.yaml
+                |__client-service.yaml
+                |__pythonnlp-deployment.yaml
+                |__pythonnlp-service.yaml
 
         2. the next step is to apply these manifests to our minikube cluster with the following command line : 
 
@@ -201,17 +203,47 @@ the next step is CD part :
 
             kubectl get pods
 
-            we should find this (we can access our app from the cluster)
-
 ![k8s_2](./images/k8s_2.png)
+
+        we can access logs of one of the services to check its status :
+
+            kubectl describe pod -l app=api
+
+![k8s_3](./images/k8s_3.png)
+
+        we should atteind this stage where containers are created and ready 
+
+![k8s_4](./images/k8s_4.png)
 
         4. to access the app all we need to do is run the following command line to get the url of the frontend app (client) wich is related to the other containers : 
 
             minikube service client-service --url 
 
-![k8s_3](./images/k8s_3.png)
+![k8s_5](./images/k8s_5.png)
 
     + helm + ArgoCD :
+
+        1. we start by installing helm in our local laptop  
+
+        2. i created a folder named helm-charts to contain all helm charts for the application 
+
+            app
+            |__helm-charts
+                |__api
+                |__client
+                |__pythonnlp
+                    |__templates
+                    |__.helmignore
+                    |__Chart.yaml
+                    |__values.yaml
+
+            the file values.yaml in every service is the one that we're gonne modify after creating the charts with the following command lines in the helm-charts folder:
+
+                helm create api
+                helm create client
+                helm create pythonnlp
+
+        3. as long we got to this stage now let's move to installing argoCD into our cluster (of course after deleting the previous deployment [kubernetes simple])
 
 
 
