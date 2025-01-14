@@ -68,7 +68,10 @@ So the goal from the next step is to build a CI/CD pipline for the previous proj
 
             if you're using docker desktop you'll find something like this :
 
-<image><image><image><image><image><image><image><image><image><image>
+![docker2](./images/docker2.png)
+
+![docker1](./images/docker1.png)
+
 
     all the next steps are on ubuntu 24
 
